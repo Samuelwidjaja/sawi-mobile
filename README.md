@@ -1,4 +1,4 @@
-# Sawi mobile 🧴🌬️✨🌸
+# Sawi mobile 
 
 > **Sawi mobile** adalah sebuah aplikasi mobile untuk membeli sayur-sayuran
 ### Daftar Tugas:
@@ -8,22 +8,19 @@
 ## **_Stateless_ dan _stateful widget_**
 Stateless dan Stateful Widget adalah dua jenis widget yang umum digunakan dalam pengembangan aplikasi Flutter. Berikut adalah perbedaan utama antara Stateless dan Stateful Widget:
 
-Stateless Widget:
-- Widget yang di-build hanya dengan konfigurasi yang telah diinisiasi sejak awal.
-- Widget yang tidak akan pernah berubah.
-- Digunakan untuk membuat komponen yang statis dan tidak berubah.
-- Tidak memiliki state internal yang dapat berubah seiring waktu.
-- Tidak dapat menggunakan fungsi setState().
+StatelessWidget:
+- Tidak memiliki data yang dapat berubah (immutable).
+- Digunakan untuk bagian tampilan yang tidak perlu berubah seiring waktu.
+- Setiap kali ada perubahan yang memengaruhi widget ini, Anda perlu membuat widget baru.
+- Contoh penggunaan: menampilkan teks statis, ikon, gambar, dan sebagainya.
 
-Stateful Widget:
-- Widget yang dapat berubah dinamis.
-- Digunakan untuk membuat komponen yang dapat berinteraksi atau merespons perubahan.
-- Memiliki state internal yang dapat berubah seiring waktu.
-- Dapat menggunakan fungsi setState() untuk memberitahu framework bahwa ada object yang berubah pada State, kemudian akan melakukan build ulang pada Widget tersebut.
+StatefulWidget:
+- Memiliki state (keadaan) yang dapat berubah selama siklus hidup widget.
+- Digunakan untuk bagian tampilan yang perlu berubah seiring waktu atau merespons perubahan data.
+- Stateful widget dapat memperbarui tampilan ketika ada perubahan dalam state atau data yang mereka kelola.
+- Contoh penggunaan: formulir input, daftar item yang dapat diperbarui, aplikasi dengan banyak halaman yang dapat berubah, dan sebagainya.
 
-Kesimpulannya, Stateless Widget digunakan untuk membuat komponen yang statis dan tidak berubah, sedangkan Stateful Widget digunakan untuk membuat komponen yang dapat berinteraksi atau merespons perubahan. Stateless Widget tidak memiliki state internal yang dapat berubah, sedangkan Stateful Widget memiliki state internal yang dapat berubah seiring waktu dan dapat menggunakan fungsi setState() untuk memberitahu framework bahwa ada object yang berubah pada State, kemudian akan melakukan build ulang pada Widget tersebut.
-
-<img width="969" alt="SJURB" src="https://github.com/yhogaa/FragranceGate/assets/113284837/f76d4c23-398d-412e-a3bf-974c11e8f03a">
+Penggunaan StatelessWidget dan StatefulWidget dalam tugas ini menggambarkan konsep dasar Flutter di mana Anda menggunakan StatelessWidget untuk elemen tampilan yang tetap (seperti item daftar belanja) dan StatefulWidget ketika Anda perlu merespons perubahan data atau interaksi pengguna (seperti menampilkan umpan balik saat tombol diklik).
 
 ## **_Widget_ yang digunakan**
 1. **MyHomePage**: Ini adalah widget utama yang merupakan halaman beranda dari aplikasi. Ini adalah widget Stateless (tidak memiliki keadaan internal) yang akan menggambarkan tampilan beranda aplikasi.
