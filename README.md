@@ -50,3 +50,30 @@ Penggunaan StatelessWidget dan StatefulWidget dalam tugas ini menggambarkan kons
 13. **SnackBar**: Widget yang menampilkan pesan sementara yang muncul di bagian bawah layar ketika item di klik.
 
 ## **Implementasi Aplikasi**
+**Membuat sebuah program Flutter baru dengan tema inventory seperti tugas-tugas sebelumnya.**
+Generate proyek flutter baru dengan command flutter create sawimobile
+
+ **Membuat tiga tombol sederhana dengan ikon dan teks untuk:
+ Melihat daftar item (Lihat Item)
+ Menambah item (Tambah Item)
+ Logout (Logout)**
+ Seperti pada tutorial menambahkan 3 tombol, edit menu.dart dan menambahkan kode
+ final List<ShopItem> items = [
+    ShopItem("Lihat Produk", Icons.checklist),
+    ShopItem("Tambah Produk", Icons.add_shopping_cart),
+    ShopItem("Logout", Icons.logout),
+];
+
+ **Memunculkan Snackbar dengan tulisan:
+ "Kamu telah menekan tombol Lihat Item" ketika tombol Lihat Item ditekan.
+ "Kamu telah menekan tombol Tambah Item" ketika tombol Tambah Item ditekan.
+ "Kamu telah menekan tombol Logout" ketika tombol Logout ditekan.**
+ Mengedit menu.dart pada bagian widgetbuild
+  onTap: () {
+          // Memunculkan SnackBar ketika diklik
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(
+                content: Text("Kamu telah menekan tombol ${item.name}!")));
+        },
+saat diclick maka akan ada message sesuai tombol yang ditekan
