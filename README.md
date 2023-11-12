@@ -77,3 +77,47 @@ Generate proyek flutter baru dengan command flutter create sawimobile
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
         },
 saat diclick maka akan ada message sesuai tombol yang ditekan
+
+# Tugas 8
+
+1. **Perbedaan antara `Navigator.push()` dan `Navigator.pushReplacement()`:**
+   - `Navigator.push()`: Digunakan untuk menambahkan rute baru ke tumpukan navigasi. Ini menambahkan rute baru di atas rute saat ini, sehingga pengguna dapat kembali ke rute sebelumnya.
+   
+     ```dart
+     Navigator.push(
+       context,
+       MaterialPageRoute(builder: (context) => ShopFormPage()),
+     );
+     ```
+   
+   - `Navigator.pushReplacement()`: Digunakan untuk menggantikan rute saat ini dengan rute baru. Ini berguna ketika Anda ingin mengganti tampilan saat ini dengan tampilan baru dan menghapus tampilan saat ini dari tumpukan.
+
+     ```dart
+     Navigator.pushReplacement(
+       context,
+       MaterialPageRoute(builder: (context) => NewPage()),
+     );
+     ```
+
+2. **Layout Widgets pada Flutter dan Konteks Penggunaannya:**
+   - `Container`: Widget ini digunakan untuk mengelompokkan dan mengatur widget lain. Kontainer dapat menentukan batasan ukuran, padding, dan dekorasi.
+   - `Column` dan `Row`: Digunakan untuk menata widget secara vertikal (Column) atau horizontal (Row).
+   - `ListView`: Digunakan untuk menampilkan daftar item secara berurutan, bisa scroll jika item melebihi ruang yang tersedia.
+   - `Stack`: Digunakan untuk menumpuk widget di atas satu sama lain. Widget dalam tumpukan ditempatkan relatif terhadap satu sama lain.
+   - `GridView`: Mengatur widget dalam bentuk grid atau matriks.
+
+3. **Elemen Input pada Form dan Penggunaannya:**
+   - `TextField`: Untuk input teks dari pengguna.
+   - `Checkbox`: Untuk memungkinkan pengguna memilih opsi dengan kotak centang.
+   - `RadioButton`: Untuk memungkinkan pengguna memilih satu opsi dari beberapa opsi.
+   - `DropdownButton`: Untuk membuat dropdown menu dengan opsi pilihan.
+   - `DatePicker`: Untuk memungkinkan pengguna memilih tanggal.
+
+   Pilihan ini digunakan untuk mengumpulkan informasi yang diperlukan untuk formulir, seperti nama, alamat, tanggal, dan opsi-opsi pilihan.
+
+4. **Penerapan Clean Architecture pada Aplikasi Flutter:**
+   - **Domain Layer**: Berisi aturan bisnis dan logika aplikasi. Tidak bergantung pada lapisan lain dan hanya berisi kode yang dapat digunakan di berbagai platform.
+   - **Data Layer**: Menyediakan implementasi konkrit dari abstraksi yang didefinisikan di lapisan domain. Berkomunikasi dengan sumber data eksternal seperti database atau API.
+   - **Presentation Layer**: Menangani UI dan interaksi pengguna. Menggunakan kode dari lapisan domain dan data untuk mempresentasikan informasi kepada pengguna.
+
+   Pemisahan ini memudahkan pengujian, pemeliharaan, dan penggantian komponen tanpa mempengaruhi yang lain. Clean architecture juga mendukung prinsip Dependency Inversion, di mana lapisan yang lebih tinggi tidak bergantung pada lapisan yang lebih rendah, tetapi sebaliknya.
