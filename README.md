@@ -121,3 +121,28 @@ saat diclick maka akan ada message sesuai tombol yang ditekan
    - **Presentation Layer**: Menangani UI dan interaksi pengguna. Menggunakan kode dari lapisan domain dan data untuk mempresentasikan informasi kepada pengguna.
 
    Pemisahan ini memudahkan pengujian, pemeliharaan, dan penggantian komponen tanpa mempengaruhi yang lain. Clean architecture juga mendukung prinsip Dependency Inversion, di mana lapisan yang lebih tinggi tidak bergantung pada lapisan yang lebih rendah, tetapi sebaliknya.
+
+5. **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)**
+  
+1. Membuat Halaman Formulir Tambah Item Baru
+1.1. Buat Halaman Baru
+Buat widget Flutter baru untuk halaman formulir tambah item. Anda dapat menggunakan StatefulWidget untuk mengelola status formulir.
+
+1.2. Tambahkan Elemen Input
+Gunakan elemen input seperti TextFormField untuk name, amount, dan description sesuai dengan model aplikasi Django yang Anda buat.
+
+1.3. Tambahkan Tombol Save
+Tambahkan tombol ElevatedButton atau TextButton untuk menyimpan data formulir.
+
+1.4. Validasi Elemen Input
+Implementasikan validasi untuk memastikan bahwa setiap elemen input tidak boleh kosong dan sesuai dengan tipe data yang diharapkan.
+
+1.5. Tampilkan Pop-up
+Setelah menekan tombol Save, tampilkan pop-up dengan informasi yang diisi pada formulir menggunakan showDialog.
+
+2. Membuat Drawer
+2.1. Implementasikan Drawer
+Buat widget Flutter untuk Drawer yang minimal memiliki dua opsi: "Halaman Utama" dan "Tambah Item". Anda dapat menggunakan ListView di dalam Drawer untuk menampilkan opsi tersebut.
+
+2.2. Arahkan Pengguna
+Implementasikan navigasi menggunakan Navigator.push dan Navigator.pushReplacement sesuai dengan instruksi pada checklist. Arahkan pengguna ke halaman utama atau halaman formulir tambah item sesuai dengan opsi yang dipilih di Drawer.
