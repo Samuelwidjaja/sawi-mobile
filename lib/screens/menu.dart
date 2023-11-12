@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sawimobile/screens/shoplist_form.dart';
+import 'package:sawimobile/widgets/left_drawer.dart';
+
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -17,6 +20,7 @@ class MyHomePage extends StatelessWidget {
                 'Sawi Shopping',
                 ),
             ),
+            drawer: const LeftDrawer(),
             body: SingleChildScrollView(
                 // Widget wrapper yang dapat discroll
                 child: Padding(
@@ -68,7 +72,6 @@ ShopItem(this.name, this.icon, this.color);
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
-
   const ShopCard(this.item, {super.key}); // Constructor
 
   @override
@@ -83,6 +86,12 @@ class ShopCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+                if (item.name == "Tambah Item") {
+      Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const ShopFormPage()),
+  );
+    }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
