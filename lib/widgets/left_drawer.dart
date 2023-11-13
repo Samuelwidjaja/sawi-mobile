@@ -67,7 +67,7 @@ class LeftDrawer extends StatelessWidget {
           ),
           
           ListTile(
-            leading: const Icon(Icons.add_shopping_cart),
+            leading: const Icon(Icons.checklist),
             title: const Text('Lihat Item'),
             // Bagian redirection ke ItemListPage dengan menggunakan _generateItemList()
             onTap: () {

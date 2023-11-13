@@ -5,45 +5,41 @@ import 'package:sawimobile/screens/shoplist_form.dart';
 class ShopItem {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ShopItem(this.name, this.icon);
+ShopItem(this.name, this.icon, this.color);
 }
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
-
   const ShopCard(this.item, {super.key}); // Constructor
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.indigo,
+      color: item.color,
       child: InkWell(
         // Area responsive terhadap sentuhan
-         // Area responsif terhadap sentuhan
-  onTap: () {
-    // Memunculkan SnackBar ketika diklik
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(
-          content: Text("Kamu telah menekan tombol ${item.name}!")));
+        onTap: () {
+          // Memunculkan SnackBar ketika diklik
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(
+                content: Text("Kamu telah menekan tombol ${item.name}!")));
+                if (item.name == "Tambah Item") {
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ShopFormPage()),
+                    );
+                  }
 
-    // Navigate ke route yang sesuai (tergantung jenis tombol)
-    if (item.name == "Tambah Item") {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ShopFormPage()));
-    }
-
-    if (item.name == "Lihat Item") {
-        Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ItemListPage(items: items),
-                ),
-              );
-    }
-
-  },
+                  if (item.name == "Lihat Item") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ItemListPage(items: items)));
+                    }
+        },
         child: Container(
           // Container untuk menyimpan Icon dan Text
           padding: const EdgeInsets.all(8),

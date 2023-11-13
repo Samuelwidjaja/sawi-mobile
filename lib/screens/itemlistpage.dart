@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sawimobile/models/sawi_models.dart';
+import 'package:sawimobile/widgets/left_drawer.dart';
 
 
 class ItemListPage extends StatelessWidget {
@@ -15,6 +16,7 @@ class ItemListPage extends StatelessWidget {
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
+      drawer: const LeftDrawer(),
       body: ListView.builder(
         itemCount: items.length,
         itemBuilder: (context, index) {
