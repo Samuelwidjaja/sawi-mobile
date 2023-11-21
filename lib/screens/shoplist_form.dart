@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:sawimobile/screens/menu.dart';
 import 'package:sawimobile/widgets/left_drawer.dart';
 import 'package:sawimobile/models/sawi_models.dart';
@@ -21,6 +25,8 @@ class _ShopFormPageState extends State<ShopFormPage> {
 
   @override
   Widget build(BuildContext context) {
+  final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Form Tambah Item'),
@@ -116,55 +122,36 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.indigo),
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // Create an Item instance with the provided data
-                        Item newItem = Item(
-                          name: _name,
-                          price: _price,
-                          amount: _amount,
-                          description: _description,
-                        );
-
-                        // Add the new item to the items list
-                        items.add(newItem);
-
-                        // Show the success dialog
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Item berhasil tersimpan'),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Nama: $_name'),
-                                    Text('Harga: $_price'),
-                                    Text('Total: $_amount'),
-                                    Text('Deskripsi: $_description'),
-                                  ],
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => MyHomePage(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
+                    onPressed: () async {
+    if (_formKey.currentState!.validate()) {
+        // Kirim ke Django dan tunggu respons
+        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+        final response = await request.postJson(
+        "http://localhost:8000//create-flutter/",
+        jsonEncode(<String, String>{
+            'name': _name,
+            'price': _price.toString(),
+            'description': _description,
+            // TODO: Sesuaikan field data sesuai dengan aplikasimu
+        }));
+        if (response['status'] == 'success') {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(
+            content: Text("Item baru berhasil disimpan!"),
+            ));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+            );
+        } else {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(
+                content:
+                    Text("Terdapat kesalahan, silakan coba lagi."),
+            ));
+        }
+    }
+},
                     child: const Text(
                       "Save",
                       style: TextStyle(color: Colors.white),
