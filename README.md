@@ -1,8 +1,6 @@
 # Sawi mobile 
 
 > **Sawi mobile** adalah sebuah aplikasi mobile untuk membeli sayur-sayuran
-### Daftar Tugas:
-- **[Tugas 7](#tugas-7)**<br>
 
 # Tugas 7
 ## **_Stateless_ dan _stateful widget_**
