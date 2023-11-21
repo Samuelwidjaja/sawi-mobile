@@ -1,8 +1,6 @@
 # Sawi mobile 
 
 > **Sawi mobile** adalah sebuah aplikasi mobile untuk membeli sayur-sayuran
-### Daftar Tugas:
-- **[Tugas 7](#tugas-7)**<br>
 
 # Tugas 7
 ## **_Stateless_ dan _stateful widget_**
@@ -146,3 +144,138 @@ Buat widget Flutter untuk Drawer yang minimal memiliki dua opsi: "Halaman Utama"
 
 2.2. Arahkan Pengguna
 Implementasikan navigasi menggunakan Navigator.push dan Navigator.pushReplacement sesuai dengan instruksi pada checklist. Arahkan pengguna ke halaman utama atau halaman formulir tambah item sesuai dengan opsi yang dipilih di Drawer.
+
+
+# Tugas 9
+
+### Pengambilan Data JSON tanpa Membuat Model:
+
+Ya, kita dapat melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Ini sering disebut sebagai "parsing dinamis" di Flutter, di mana kita mengakses nilai dalam map JSON secara langsung tanpa menggunakan model.
+
+Contoh sederhana pengambilan data JSON tanpa model:
+
+```dart
+import 'dart:convert';
+
+void main() {
+  String jsonData = '{"name": "John", "age": 30}';
+  Map<String, dynamic> userMap = json.decode(jsonData);
+
+  print('Name: ${userMap['name']}');
+  print('Age: ${userMap['age']}');
+}
+```
+
+### Penggunaan CookieRequest:
+
+`CookieRequest` adalah bagian dari pustaka `pbp_django_auth` yang mungkin kita gunakan untuk melakukan permintaan HTTP di Flutter. Menggunakan instance `CookieRequest` memungkinkan aplikasi untuk menyimpan dan mengelola cookie, yang penting untuk menyimpan informasi otentikasi antara permintaan HTTP. Instance `CookieRequest` dibagikan ke semua komponen agar mereka dapat berinteraksi dengan server Django dan menjaga keadaan otentikasi.
+
+### Mekanisme Pengambilan Data dari JSON hingga Ditampilkan pada Flutter:
+
+1. **Pengambilan Data JSON:**
+   - Menggunakan metode seperti `http.get` atau `http.post` untuk mengambil data JSON dari server.
+
+2. **Pemrosesan Data JSON:**
+   - Menggunakan `json.decode` untuk mengubah string JSON menjadi objek Dart (map atau list).
+
+3. **Penyimpanan Data:**
+   - Menyimpan data dalam variabel atau struktur data yang sesuai.
+
+4. **Tampilan di Flutter:**
+   - Menggunakan widget seperti `ListView`, `GridView`, atau widget lainnya untuk menampilkan data JSON dalam antarmuka pengguna Flutter.
+
+### Mekanisme Autentikasi dari Input Data Akun pada Flutter ke Django:
+
+1. **Input Data Akun di Flutter:**
+   - Pengguna memasukkan informasi akun seperti nama pengguna dan kata sandi melalui antarmuka pengguna Flutter.
+
+2. **Permintaan Autentikasi ke Django:**
+   - Menggunakan `CookieRequest` atau pustaka http untuk mengirim permintaan autentikasi ke server Django.
+
+3. **Proses Autentikasi di Django:**
+   - Django memeriksa informasi otentikasi dan memberikan respons sesuai.
+
+4. **Tampilan Menu di Flutter:**
+   - Jika autentikasi berhasil, Flutter menavigasi ke halaman menu atau menampilkan menu sesuai dengan respons dari Django.
+
+### Widget yang Digunakan pada Tugas:
+
+1. **`ShopFormPage`:**
+   - Widget utama yang menangani formulir penambahan item toko.
+
+2. **`LeftDrawer`:**
+   - Widget yang menyajikan drawer (menu sisi kiri) pada aplikasi.
+
+3. **`MyHomePage`:**
+   - Widget utama halaman beranda aplikasi.
+
+4. **`Item`:**
+   - Model untuk merepresentasikan item toko.
+
+5. **`SnackBar`:**
+   - Widget untuk menampilkan pesan sementara di bagian bawah layar.
+
+6. **`ElevatedButton`:**
+   - Tombol yang meningkatkan (elevated) untuk menekan saat menyimpan data.
+
+7. **`Form`:**
+   - Widget yang membungkus elemen-elemen formulir di dalamnya.
+
+8. **`TextFormField`:**
+   - Widget untuk input teks dalam formulir.
+
+### Deployment Proyek Django:
+
+Pastikan proyek Django telah di-*deploy* di server atau platform yang dipilih. Pastikan server berjalan, basis data terhubung, dan endpoint-endpoint dapat diakses dari internet.
+
+### Membuat Halaman Login pada Proyek Flutter:
+
+1. **Tambahkan Dependensi:**
+   - Pastikan dependensi seperti `http` dan `shared_preferences` sudah ditambahkan.
+
+2. **Buat Form Login:**
+   - Buat halaman atau widget untuk form login dengan elemen input seperti nama pengguna dan kata sandi.
+
+3. **Kirim Permintaan Autentikasi ke Django:**
+   - Gunakan `http.post` untuk mengirim permintaan autentikasi ke endpoint Django.
+
+4. **Kelola Respons dan Penyimpanan Token:**
+   - Kelola respons dari Django, terutama token otentikasi. Simpan token ini di `shared_preferences`.
+
+### Integrasi Sistem Autentikasi Django dengan Proyek Flutter:
+
+1. **Gunakan Token pada Permintaan Selanjutnya:**
+   - Tambahkan token otentikasi pada header setiap permintaan HTTP ke Django setelah login.
+
+2. **Kelola Sesi Otentikasi:**
+   - Pastikan untuk menyimpan dan mengelola sesi otentikasi.
+
+### Membuat Model Kustom Sesuai dengan Proyek Aplikasi Django:
+
+1. **Buat Model Flutter:**
+   - Buat model Flutter yang sesuai dengan model Django. Pastikan atribut dan tipe data cocok.
+
+2. **Gunakan Model dalam Aplikasi Flutter:**
+   - Gunakan model Flutter ini untuk merepresentasikan data di aplikasi Flutter.
+
+### Membuat Halaman Daftar Semua Item:
+
+1. **Gunakan FutureBuilder:**
+   - Gunakan `FutureBuilder` untuk mengambil dan menampilkan daftar item dari endpoint JSON di Django.
+
+2. **Tampilkan Informasi yang Dibutuhkan:**
+   - Tampilkan nama, amount, dan description dari masing-masing item di halaman ini.
+
+### Membuat Halaman Detail untuk Setiap Item:
+
+1. **Navigasi dari Halaman Daftar Item:**
+   - Tambahkan navigasi agar pengguna dapat menekan salah satu item di halaman daftar dan diarahkan ke halaman detail.
+
+2. **Gunakan FutureBuilder untuk Detail Item:**
+   - Gunakan `FutureBuilder` lagi untuk mengambil detail item dari endpoint JSON di Django.
+
+3. **Tampilkan Seluruh Atribut Model Item:**
+   - Tampilkan seluruh atribut pada model item di halaman detail.
+
+4. **Tambahkan Tombol Kembali:**
+   - Tambahkan tombol atau ikon untuk kembali ke halaman daftar item.
