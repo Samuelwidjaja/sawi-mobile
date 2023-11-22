@@ -65,11 +65,11 @@ class Fields {
 }
 
 enum Model {
-    MAIN_PRODUCT
+    MAIN_ITEM
 }
 
 final modelValues = EnumValues({
-    "main.product": Model.MAIN_PRODUCT
+    "main.item": Model.MAIN_ITEM
 });
 
 class EnumValues<T> {
